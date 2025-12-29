@@ -10,8 +10,8 @@
     <meta property="og:title" content="The True Cost of Working From Home | 50 U.S. Cities Ranked">
     <meta property="og:description" content="NYC costs 3.2× more than Tulsa for remote work. Housing drives 61% of WFH expenses nationally.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
+    <meta property="og:url" content="https://allwhere.co/wfh-cost-study">
+    <meta property="og:image" content="https://allwhere.co/wfh-cost-study-og.png">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -21,35 +21,46 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         :root {
-            /* Colors */
-            --color-expensive: #E63946;
-            --color-expensive-light: #FFCCD2;
-            --color-mid: #F4A261;
-            --color-affordable: #2A9D8F;
-            --color-affordable-light: #C8F0EB;
+            /* allwhere Brand Colors */
+            --color-cream: #FAF6F1;            /* Warm cream - main background */
+            --color-black: #000000;            /* Black - text, dark elements */
+            --color-gold: #EDBA4A;             /* Golden yellow - primary CTA */
+            --color-white: #FFFFFF;            /* White - cards */
+            --color-cyan: #8FC8CF;             /* Teal - feature sections */
+            --color-coral: #F27058;            /* Coral - highlights, links */
+            --color-green: #53853C;            /* Green - success, affordable */
+            --color-gray: #647076;             /* Gray - muted text */
             
-            --color-bg: #FAFAF9;
-            --color-bg-alt: #F5F5F4;
-            --color-bg-dark: #1C1917;
-            --color-text: #1C1917;
-            --color-text-muted: #78716C;
-            --color-text-light: #A8A29E;
-            --color-border: #E7E5E4;
+            /* Semantic Colors */
+            --color-expensive: #F27058;        /* Coral for expensive */
+            --color-expensive-light: #FDEAE6;
+            --color-mid: #EDBA4A;              /* Gold for mid-range */
+            --color-affordable: #53853C;       /* Green for affordable */
+            --color-affordable-light: #E8F0E5;
             
-            --color-housing: #3B82F6;
-            --color-internet: #8B5CF6;
-            --color-electricity: #F59E0B;
+            --color-bg: #FAF6F1;               /* Cream background */
+            --color-bg-alt: #FFFFFF;           /* White for cards */
+            --color-bg-dark: #000000;          /* Black for dark sections */
+            --color-bg-feature: #8FC8CF;       /* Cyan for feature sections */
+            --color-text: #000000;             /* Black text */
+            --color-text-muted: #647076;       /* Gray muted text */
+            --color-text-light: #8A9199;       /* Lighter gray */
+            --color-border: #E5E5E5;           /* Light border */
+            
+            --color-housing: #000000;          /* Black for housing */
+            --color-internet: #8FC8CF;         /* Cyan for internet */
+            --color-electricity: #EDBA4A;      /* Gold for electricity */
             
             /* Typography */
             --font-display: 'Instrument Serif', Georgia, serif;
-            --font-body: 'Sora', system-ui, sans-serif;
+            --font-body: 'IBM Plex Sans', 'Sora', system-ui, sans-serif;
             
             /* Spacing */
             --section-padding: clamp(4rem, 10vw, 8rem);
@@ -58,9 +69,9 @@
             
             /* Effects */
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.07);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.08);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.08);
             
             --radius-sm: 4px;
             --radius-md: 8px;
@@ -107,13 +118,13 @@
         }
         
         a {
-            color: var(--color-expensive);
+            color: var(--color-coral);
             text-decoration: none;
             transition: color 0.2s ease;
         }
         
         a:hover {
-            color: var(--color-text);
+            color: var(--color-black);
         }
         
         /* Layout */
@@ -138,7 +149,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(250, 250, 249, 0.9);
+            background: rgba(250, 246, 241, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--color-border);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -154,10 +165,11 @@
         }
         
         .nav__logo {
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: 1.25rem;
-            color: var(--color-text);
-            font-style: italic;
+            font-weight: 500;
+            color: var(--color-black);
+            letter-spacing: -0.02em;
         }
         
         .nav__links {
@@ -170,13 +182,13 @@
             font-size: 0.875rem;
             font-weight: 500;
             color: var(--color-text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            text-transform: lowercase;
+            letter-spacing: 0;
             transition: color 0.2s ease;
         }
         
         .nav__links a:hover {
-            color: var(--color-text);
+            color: var(--color-black);
         }
         
         @media (max-width: 768px) {
@@ -194,19 +206,11 @@
             padding-top: 6rem;
             position: relative;
             overflow: hidden;
+            background: var(--color-bg);
         }
         
         .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(230, 57, 70, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(42, 157, 143, 0.08) 0%, transparent 50%);
-            pointer-events: none;
+            display: none;
         }
         
         .hero__content {
@@ -218,8 +222,8 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--color-text);
-            color: var(--color-bg);
+            background: var(--color-black);
+            color: white;
             padding: 0.5rem 1rem;
             border-radius: 100px;
             font-size: 0.75rem;
@@ -235,7 +239,7 @@
             content: '';
             width: 8px;
             height: 8px;
-            background: var(--color-expensive);
+            background: var(--color-gold);
             border-radius: 50%;
             animation: pulse 2s ease infinite;
         }
@@ -250,11 +254,12 @@
             margin-bottom: 1.5rem;
             animation: fadeInUp 0.8s ease 0.1s forwards;
             opacity: 0;
+            color: var(--color-black);
         }
         
         .hero__title em {
             font-style: italic;
-            color: var(--color-expensive);
+            color: var(--color-coral);
         }
         
         .hero__subtitle {
@@ -269,10 +274,10 @@
         .hero__stat {
             display: inline-flex;
             flex-direction: column;
-            background: white;
+            background: var(--color-white);
             padding: 2rem 3rem;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
             border: 1px solid var(--color-border);
             animation: fadeInUp 0.8s ease 0.3s forwards;
             opacity: 0;
@@ -290,7 +295,7 @@
         .hero__stat-value {
             font-family: var(--font-display);
             font-size: 3.5rem;
-            color: var(--color-expensive);
+            color: var(--color-coral);
             line-height: 1;
         }
         
@@ -311,35 +316,35 @@
             align-items: center;
             gap: 0.5rem;
             padding: 1rem 2rem;
-            background: var(--color-text);
-            color: var(--color-bg);
+            background: var(--color-gold);
+            color: var(--color-black);
             font-family: var(--font-body);
             font-size: 0.875rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             border: none;
-            border-radius: var(--radius-sm);
+            border-radius: 100px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .btn:hover {
-            background: var(--color-expensive);
-            color: white;
+            background: var(--color-black);
+            color: var(--color-white);
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
         
         .btn--outline {
             background: transparent;
-            color: var(--color-text);
-            border: 2px solid var(--color-text);
+            color: var(--color-black);
+            border: 2px solid var(--color-black);
         }
         
         .btn--outline:hover {
-            background: var(--color-text);
-            color: var(--color-bg);
+            background: var(--color-black);
+            color: var(--color-white);
         }
         
         @keyframes fadeInUp {
@@ -355,12 +360,12 @@
         
         /* Key Findings */
         .findings {
-            background: var(--color-bg-dark);
-            color: white;
+            background: var(--color-cyan);
+            color: var(--color-black);
         }
         
         .findings h2 {
-            color: white;
+            color: var(--color-black);
             margin-bottom: 3rem;
         }
         
@@ -371,16 +376,16 @@
         }
         
         .finding-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--color-white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: var(--radius-lg);
             padding: 2rem;
             transition: all 0.3s ease;
         }
         
         .finding-card:hover {
-            background: rgba(255, 255, 255, 0.08);
             transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
         
         .finding-card__icon {
@@ -395,30 +400,30 @@
         }
         
         .finding-card__icon--expensive {
-            background: rgba(230, 57, 70, 0.2);
+            background: rgba(242, 112, 88, 0.15);
         }
         
         .finding-card__icon--housing {
-            background: rgba(59, 130, 246, 0.2);
+            background: rgba(0, 0, 0, 0.08);
         }
         
         .finding-card__icon--internet {
-            background: rgba(139, 92, 246, 0.2);
+            background: rgba(143, 200, 207, 0.3);
         }
         
         .finding-card__icon--affordable {
-            background: rgba(42, 157, 143, 0.2);
+            background: rgba(83, 133, 60, 0.15);
         }
         
         .finding-card h4 {
             font-family: var(--font-body);
             font-weight: 600;
-            color: white;
+            color: var(--color-black);
             margin-bottom: 0.75rem;
         }
         
         .finding-card p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--color-text-muted);
             font-size: 0.9375rem;
             line-height: 1.6;
         }
@@ -670,7 +675,7 @@
         
         /* WFH Penalty Section */
         .penalty {
-            background: linear-gradient(135deg, var(--color-expensive) 0%, #C1121F 100%);
+            background: linear-gradient(135deg, var(--color-coral) 0%, #E05A3A 100%);
             color: white;
             position: relative;
             overflow: hidden;
@@ -944,8 +949,8 @@
         }
         
         .surprise-card__angle--warning {
-            background: #FEF3C7;
-            color: #D97706;
+            background: #FDF6E3;
+            color: #B8941A;
         }
         
         .surprise-card p {
@@ -955,7 +960,7 @@
         
         /* Regional Section */
         .regional {
-            background: var(--color-bg-dark);
+            background: var(--color-black);
             color: white;
         }
         
@@ -1011,6 +1016,7 @@
         .regional-card__avg {
             font-family: var(--font-display);
             font-size: 1.25rem;
+            color: var(--color-gold);
         }
         
         .regional-card__cities {
@@ -1094,7 +1100,7 @@
         
         /* Expert Quote */
         .expert {
-            background: white;
+            background: var(--color-bg);
             text-align: center;
         }
         
@@ -1122,7 +1128,7 @@
         .expert__avatar {
             width: 64px;
             height: 64px;
-            background: var(--color-bg-alt);
+            background: var(--color-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1171,7 +1177,7 @@
         
         /* Footer */
         .footer {
-            background: var(--color-bg-dark);
+            background: var(--color-black);
             color: white;
             padding: 3rem 0;
         }
@@ -1190,7 +1196,7 @@
         }
         
         .footer__credit a {
-            color: white;
+            color: var(--color-gold);
             font-weight: 600;
         }
         
@@ -1215,8 +1221,8 @@
         }
         
         .share-btn:hover {
-            background: white;
-            color: var(--color-bg-dark);
+            background: var(--color-gold);
+            color: var(--color-black);
             transform: translateY(-2px);
         }
         
@@ -1253,7 +1259,7 @@
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav__inner">
-            <a href="#" class="nav__logo">WFH Cost Study</a>
+            <a href="#" class="nav__logo">allwhere</a>
             <ul class="nav__links">
                 <li><a href="#findings">Findings</a></li>
                 <li><a href="#rankings">Rankings</a></li>
@@ -1273,11 +1279,21 @@
             <div class="hero__stat">
                 <span class="hero__stat-label">The "WFH Penalty"</span>
                 <span class="hero__stat-value">$3,559</span>
-                <span class="hero__stat-context">Extra annual cost of remote work in NYC vs. Tulsa</span>
+                <span class="hero__stat-context">The "WFH Penalty" measures how much more it costs to work from home in NYC compared to Tulsa, OK — the lowest-cost market in the study.</span>
             </div>
             <div class="hero__cta">
                 <a href="#rankings" class="btn">See Full Rankings ↓</a>
             </div>
+        </div>
+    </section>
+    
+    <!-- What This Study Measures -->
+    <section class="intro" id="intro" style="background: #fff; padding: 60px 0;">
+        <div class="container" style="max-width: 900px;">
+            <h2 style="font-family: 'Instrument Serif', Georgia, serif; font-size: 2rem; margin-bottom: 1.5rem; color: #000000;">What This Study Measures</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 1.25rem;">This study quantifies the complete annual cost of maintaining a home office by combining three essential expenses: <strong>the implicit residential housing cost of dedicating space to work</strong>, broadband internet service, and incremental electricity for work equipment.</p>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 1.25rem;">Housing costs reflect the implicit cost of dedicating residential living space to work; commercial office rents are analyzed separately as a comparison and are not included in the rankings.</p>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 0;">The <strong>"WFH Penalty"</strong> measures how much more it costs to work from home in a given city compared to Tulsa, Oklahoma—the lowest-cost market in the study. This penalty ranges from <span style="color: #53853C; font-weight: 600;">$0 in Tulsa</span> to <span style="color: #F27058; font-weight: 600;">$3,559 in New York City</span>—meaning remote workers in Manhattan pay <strong>3.2× more</strong> than those in Oklahoma just to work from home.</p>
         </div>
     </section>
     
@@ -1294,7 +1310,7 @@
                 <div class="finding-card">
                     <div class="finding-card__icon finding-card__icon--housing">🏠</div>
                     <h4>Housing Dominates</h4>
-                    <p>In 45 of 50 cities, housing is the primary cost driver—accounting for 61% of WFH expenses nationally.</p>
+                    <p>In most cities, housing is the dominant cost driver—accounting for 61% of WFH expenses nationally. Colorado Springs is the only city where internet costs exceed housing.</p>
                 </div>
                 <div class="finding-card">
                     <div class="finding-card__icon finding-card__icon--internet">📡</div>
@@ -1307,6 +1323,14 @@
                     <p>Tulsa and Oklahoma City offer the lowest WFH costs in America, with internet—not housing—as the top expense.</p>
                 </div>
             </div>
+        </div>
+    </section>
+    
+    <!-- WFH vs Office Space Comparison -->
+    <section class="office-comparison" id="office-comparison" style="background: #FFFFFF; padding: 50px 0;">
+        <div class="container" style="max-width: 900px;">
+            <h3 style="font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; margin-bottom: 1rem; color: #000000;">WFH vs Renting Office Space</h3>
+            <p style="font-size: 1rem; line-height: 1.7; color: #555;">To provide context, the study also examined what it would cost to rent an equivalent amount of commercial office space (50 square feet) in each city. These office rent figures are presented as a <strong>benchmark only</strong> and are <strong>not included</strong> in total work-from-home costs or city rankings. The comparison illustrates what remote workers avoid paying by working from home rather than leasing office space.</p>
         </div>
     </section>
     
@@ -1631,8 +1655,12 @@
                 </div>
                 <div class="methodology__details">
                     <div class="method-item">
-                        <h4>🏠 Office Space Cost (50 sq ft)</h4>
-                        <p>Calculated as: <code>(Average 1BR rent ÷ Average apartment size) × 50 sq ft × 12 months</code>. This represents the implicit housing cost of dedicating home space to work.</p>
+                        <h4>🏠 Housing Cost (WFH — Used in Rankings)</h4>
+                        <p>Housing costs represent the implicit cost of dedicating 50 square feet of residential living space to work. This was calculated as: <code>(Average 1BR rent ÷ Average apartment size) × 50 sq ft × 12 months</code>. This reflects the opportunity cost of using part of a home for work rather than personal living space.</p>
+                    </div>
+                    <div class="method-item" style="background: #FFFFFF; border-left: 3px solid #8FC8CF;">
+                        <h4>🏢 Commercial Office Space (Comparison Only)</h4>
+                        <p>Commercial office rent data was analyzed separately to estimate the cost of renting 50 square feet of dedicated office space in each city. <strong>These figures are presented for comparison only and are not included in total WFH costs, rankings, or penalty calculations.</strong></p>
                     </div>
                     <div class="method-item">
                         <h4>📡 Broadband Internet</h4>
@@ -1640,7 +1668,11 @@
                     </div>
                     <div class="method-item">
                         <h4>⚡ Electricity (Equipment Only)</h4>
-                        <p>Equipment load: laptop + monitor + router + LED lamp = 91W × 160 hours/month = 17.6 kWh/month (adjusted for efficiency). Multiplied by local residential rate × 12. <strong>HVAC excluded</strong> as not directly attributable to remote work.</p>
+                        <p>Estimated at 17.6 kWh per month based on typical home office equipment (laptop, monitor, router, lamp) operating during standard work hours. Multiplied by local residential rate × 12. <strong>HVAC excluded</strong> as not directly attributable to remote work.</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>🖥️ Equipment Costs</h4>
+                        <p>Home office equipment costs ($345 one-time) were included and applied uniformly across all cities. Because equipment prices do not vary by location, they do not affect city rankings.</p>
                     </div>
                     <div class="method-item">
                         <h4>📊 Data Sources</h4>
@@ -1686,8 +1718,8 @@
         <div class="container">
             <div class="footer__content">
                 <div class="footer__credit">
-                    If you use this data, please credit and link to: <a href="#">[Your URL]</a><br>
-                    <small>Published December 2025</small>
+                    If you use this data, please credit and link to: <a href="https://allwhere.co">allwhere.co</a><br>
+                    <small>Published December 2025 | A study by allwhere</small>
                 </div>
                 <div class="footer__share">
                     <button class="share-btn" title="Share on Twitter" onclick="shareTwitter()">𝕏</button>
@@ -1898,7 +1930,7 @@
             }
         };
         
-        const colors = ['#3B82F6', '#8B5CF6', '#F59E0B'];
+        const colors = ['#000000', '#8FC8CF', '#EDBA4A'];
         
         new Chart(document.getElementById('chartNYC'), {
             ...chartConfig,
