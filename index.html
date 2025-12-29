@@ -1,0 +1,2012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The True Cost of Working From Home | 50 U.S. Cities Ranked</title>
+    <meta name="description" content="New study reveals NYC remote workers pay $3,559 more per year than those in Tulsa. See how your city ranks for home office costs.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="The True Cost of Working From Home | 50 U.S. Cities Ranked">
+    <meta property="og:description" content="NYC costs 3.2× more than Tulsa for remote work. Housing drives 61% of WFH expenses nationally.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The True Cost of Working From Home">
+    <meta name="twitter:description" content="Study: Remote work costs $3,559 more per year in NYC vs Oklahoma">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            /* Colors */
+            --color-expensive: #E63946;
+            --color-expensive-light: #FFCCD2;
+            --color-mid: #F4A261;
+            --color-affordable: #2A9D8F;
+            --color-affordable-light: #C8F0EB;
+            
+            --color-bg: #FAFAF9;
+            --color-bg-alt: #F5F5F4;
+            --color-bg-dark: #1C1917;
+            --color-text: #1C1917;
+            --color-text-muted: #78716C;
+            --color-text-light: #A8A29E;
+            --color-border: #E7E5E4;
+            
+            --color-housing: #3B82F6;
+            --color-internet: #8B5CF6;
+            --color-electricity: #F59E0B;
+            
+            /* Typography */
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'Sora', system-ui, sans-serif;
+            
+            /* Spacing */
+            --section-padding: clamp(4rem, 10vw, 8rem);
+            --container-max: 1200px;
+            --container-narrow: 800px;
+            
+            /* Effects */
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+            
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+        
+        /* Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+        }
+        
+        a {
+            color: var(--color-expensive);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        a:hover {
+            color: var(--color-text);
+        }
+        
+        /* Layout */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .container--narrow {
+            max-width: var(--container-narrow);
+        }
+        
+        section {
+            padding: var(--section-padding) 0;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(250, 250, 249, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .nav__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+        
+        .nav__logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--color-text);
+            font-style: italic;
+        }
+        
+        .nav__links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav__links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s ease;
+        }
+        
+        .nav__links a:hover {
+            color: var(--color-text);
+        }
+        
+        @media (max-width: 768px) {
+            .nav__links {
+                display: none;
+            }
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(230, 57, 70, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(42, 157, 143, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero__content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+        
+        .hero__badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--color-expensive);
+            border-radius: 50%;
+            animation: pulse 2s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .hero__title {
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+            opacity: 0;
+        }
+        
+        .hero__title em {
+            font-style: italic;
+            color: var(--color-expensive);
+        }
+        
+        .hero__subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero__stat {
+            display: inline-flex;
+            flex-direction: column;
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--color-border);
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .hero__stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero__stat-value {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            color: var(--color-expensive);
+            line-height: 1;
+        }
+        
+        .hero__stat-context {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-top: 0.75rem;
+        }
+        
+        .hero__cta {
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--color-expensive);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn--outline {
+            background: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-text);
+        }
+        
+        .btn--outline:hover {
+            background: var(--color-text);
+            color: var(--color-bg);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Key Findings */
+        .findings {
+            background: var(--color-bg-dark);
+            color: white;
+        }
+        
+        .findings h2 {
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .findings__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .finding-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .finding-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+        
+        .finding-card__icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .finding-card__icon--expensive {
+            background: rgba(230, 57, 70, 0.2);
+        }
+        
+        .finding-card__icon--housing {
+            background: rgba(59, 130, 246, 0.2);
+        }
+        
+        .finding-card__icon--internet {
+            background: rgba(139, 92, 246, 0.2);
+        }
+        
+        .finding-card__icon--affordable {
+            background: rgba(42, 157, 143, 0.2);
+        }
+        
+        .finding-card h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+        
+        .finding-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: white;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .stats__grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .stats__grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .stats__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .stat-box__value {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--color-text);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-box__value--expensive {
+            color: var(--color-expensive);
+        }
+        
+        .stat-box__value--affordable {
+            color: var(--color-affordable);
+        }
+        
+        .stat-box__label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+        }
+        
+        /* Rankings Table */
+        .rankings {
+            background: var(--color-bg);
+        }
+        
+        .rankings__header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .rankings__search {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .rankings__search input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        .rankings__search input:focus {
+            outline: none;
+            border-color: var(--color-text);
+        }
+        
+        .rankings__search::before {
+            content: '🔍';
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+        }
+        
+        .table-wrapper {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+        
+        .table-scroll {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9375rem;
+        }
+        
+        thead {
+            background: var(--color-bg-alt);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        th {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-muted);
+            border-bottom: 2px solid var(--color-border);
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+        
+        th:hover {
+            background: var(--color-border);
+        }
+        
+        th.sorted-asc::after {
+            content: ' ↑';
+        }
+        
+        th.sorted-desc::after {
+            content: ' ↓';
+        }
+        
+        td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+            white-space: nowrap;
+        }
+        
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+        
+        tbody tr:hover {
+            background: var(--color-bg-alt);
+        }
+        
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .rank-cell {
+            font-weight: 700;
+            color: var(--color-text-muted);
+            width: 60px;
+        }
+        
+        .city-cell {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .cost-cell {
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+        }
+        
+        .cost-cell--expensive {
+            color: var(--color-expensive);
+        }
+        
+        .cost-cell--mid {
+            color: var(--color-mid);
+        }
+        
+        .cost-cell--affordable {
+            color: var(--color-affordable);
+        }
+        
+        .percent-cell {
+            color: var(--color-text-muted);
+        }
+        
+        .driver-badge {
+            display: inline-flex;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .driver-badge--housing {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--color-housing);
+        }
+        
+        .driver-badge--internet {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--color-internet);
+        }
+        
+        .penalty-cell {
+            font-weight: 600;
+        }
+        
+        .penalty-cell--high {
+            color: var(--color-expensive);
+        }
+        
+        .penalty-cell--low {
+            color: var(--color-affordable);
+        }
+        
+        .type-badge {
+            display: inline-flex;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.6875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            background: var(--color-bg-alt);
+            color: var(--color-text-muted);
+        }
+        
+        /* WFH Penalty Section */
+        .penalty {
+            background: linear-gradient(135deg, var(--color-expensive) 0%, #C1121F 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .penalty::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .penalty h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .penalty__subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.125rem;
+            max-width: 700px;
+            margin-bottom: 3rem;
+        }
+        
+        .penalty__chart-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .penalty__bars {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .penalty-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .penalty-bar__city {
+            width: 150px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
+        .penalty-bar__track {
+            flex: 1;
+            height: 32px;
+            background: rgba(255,255,255,0.2);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .penalty-bar__fill {
+            height: 100%;
+            background: white;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 0.75rem;
+            transition: width 1s ease;
+        }
+        
+        .penalty-bar__value {
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--color-expensive);
+        }
+        
+        .penalty__quote {
+            background: white;
+            color: var(--color-text);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            position: relative;
+        }
+        
+        .penalty__quote::before {
+            content: '"';
+            font-family: var(--font-display);
+            font-size: 6rem;
+            color: var(--color-expensive);
+            opacity: 0.2;
+            position: absolute;
+            top: 0;
+            left: 1.5rem;
+            line-height: 1;
+        }
+        
+        .penalty__quote p {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-text);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Cost Breakdown */
+        .breakdown {
+            background: var(--color-bg-alt);
+        }
+        
+        .breakdown__intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+        
+        .breakdown__intro p {
+            font-size: 1.125rem;
+            margin-top: 1rem;
+        }
+        
+        .breakdown__charts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 900px) {
+            .breakdown__charts {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+        
+        .breakdown-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+        
+        .breakdown-card__city {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .breakdown-card__type {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+        
+        .breakdown-card__chart {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .breakdown-card__legend {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .legend-item__label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .legend-item__dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .legend-item__dot--housing {
+            background: var(--color-housing);
+        }
+        
+        .legend-item__dot--internet {
+            background: var(--color-internet);
+        }
+        
+        .legend-item__dot--electricity {
+            background: var(--color-electricity);
+        }
+        
+        .legend-item__value {
+            font-weight: 600;
+        }
+        
+        /* Surprise Cities */
+        .surprise {
+            background: white;
+        }
+        
+        .surprise__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .surprise__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .surprise-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+        
+        .surprise-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        
+        .surprise-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .surprise-card__city {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+        }
+        
+        .surprise-card__angle {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+        }
+        
+        .surprise-card__angle--expensive {
+            background: var(--color-expensive-light);
+            color: var(--color-expensive);
+        }
+        
+        .surprise-card__angle--cheap {
+            background: var(--color-affordable-light);
+            color: var(--color-affordable);
+        }
+        
+        .surprise-card__angle--warning {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+        
+        .surprise-card p {
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+        
+        /* Regional Section */
+        .regional {
+            background: var(--color-bg-dark);
+            color: white;
+        }
+        
+        .regional h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .regional__subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+        }
+        
+        .regional__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .regional__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .regional__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .regional-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+        }
+        
+        .regional-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .regional-card__name {
+            font-weight: 600;
+        }
+        
+        .regional-card__avg {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+        }
+        
+        .regional-card__cities {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .regional-city {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .regional-city__cost {
+            font-weight: 600;
+            color: white;
+        }
+        
+        /* Methodology */
+        .methodology {
+            background: var(--color-bg-alt);
+        }
+        
+        .methodology__content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
+        
+        @media (max-width: 900px) {
+            .methodology__content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .methodology__sidebar h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .methodology__sidebar p {
+            font-size: 1rem;
+        }
+        
+        .methodology__details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .method-item {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid var(--color-border);
+        }
+        
+        .method-item h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .method-item p {
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+        
+        .method-item code {
+            background: var(--color-bg-alt);
+            padding: 0.125rem 0.375rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+        }
+        
+        /* Expert Quote */
+        .expert {
+            background: white;
+            text-align: center;
+        }
+        
+        .expert__quote {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .expert__text {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-style: italic;
+            color: var(--color-text);
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+        
+        .expert__author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .expert__avatar {
+            width: 64px;
+            height: 64px;
+            background: var(--color-bg-alt);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .expert__name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .expert__title {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+        
+        /* Download Section */
+        .download {
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+        }
+        
+        .download__content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .download__text h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .download__text p {
+            font-size: 1rem;
+        }
+        
+        .download__buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--color-bg-dark);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer__content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .footer__credit {
+            font-size: 0.9375rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .footer__credit a {
+            color: white;
+            font-weight: 600;
+        }
+        
+        .footer__share {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .share-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            color: white;
+        }
+        
+        .share-btn:hover {
+            background: white;
+            color: var(--color-bg-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+        
+        /* Print Styles */
+        @media print {
+            .nav, .hero__cta, .download, .footer__share {
+                display: none;
+            }
+            
+            section {
+                break-inside: avoid;
+                padding: 2rem 0;
+            }
+            
+            .hero {
+                min-height: auto;
+            }
+        }
+        
+        /* No results state */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#" class="nav__logo">WFH Cost Study</a>
+            <ul class="nav__links">
+                <li><a href="#findings">Findings</a></li>
+                <li><a href="#rankings">Rankings</a></li>
+                <li><a href="#penalty">WFH Penalty</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container hero__content">
+            <span class="hero__badge">New Study • December 2025</span>
+            <h1 class="hero__title">The True Cost of <em>Working From Home</em></h1>
+            <p class="hero__subtitle">A comprehensive analysis of what remote work really costs in America's 50 largest cities—and why your ZIP code matters more than you think.</p>
+            <div class="hero__stat">
+                <span class="hero__stat-label">The "WFH Penalty"</span>
+                <span class="hero__stat-value">$3,559</span>
+                <span class="hero__stat-context">Extra annual cost of remote work in NYC vs. Tulsa</span>
+            </div>
+            <div class="hero__cta">
+                <a href="#rankings" class="btn">See Full Rankings ↓</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Key Findings -->
+    <section class="findings" id="findings">
+        <div class="container">
+            <h2>Key Findings</h2>
+            <div class="findings__grid">
+                <div class="finding-card">
+                    <div class="finding-card__icon finding-card__icon--expensive">📍</div>
+                    <h4>NYC is Most Expensive</h4>
+                    <p>At $5,180/year, New York City costs 3.2× more than Tulsa ($1,621) for remote work—a gap of $3,559 annually.</p>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-card__icon finding-card__icon--housing">🏠</div>
+                    <h4>Housing Dominates</h4>
+                    <p>In 45 of 50 cities, housing is the primary cost driver—accounting for 61% of WFH expenses nationally.</p>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-card__icon finding-card__icon--internet">📡</div>
+                    <h4>Internet Surprise</h4>
+                    <p>Colorado Springs has America's most expensive broadband at $1,229/year—pushing costs 49% above nearby Denver.</p>
+                </div>
+                <div class="finding-card">
+                    <div class="finding-card__icon finding-card__icon--affordable">💰</div>
+                    <h4>Oklahoma Leads</h4>
+                    <p>Tulsa and Oklahoma City offer the lowest WFH costs in America, with internet—not housing—as the top expense.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="stats__grid">
+                <div class="stat-box">
+                    <div class="stat-box__value stat-box__value--expensive">$5,180</div>
+                    <div class="stat-box__label">Most Expensive (NYC)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box__value stat-box__value--affordable">$1,621</div>
+                    <div class="stat-box__label">Cheapest (Tulsa)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box__value">3.2×</div>
+                    <div class="stat-box__label">Cost Multiplier</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box__value">61%</div>
+                    <div class="stat-box__label">From Housing</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box__value">50</div>
+                    <div class="stat-box__label">Cities Analyzed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Rankings Table -->
+    <section class="rankings" id="rankings">
+        <div class="container">
+            <div class="rankings__header">
+                <div>
+                    <h2>Complete City Rankings</h2>
+                    <p>All 50 cities ranked by total annual WFH cost. Click any column header to sort.</p>
+                </div>
+                <div class="rankings__search">
+                    <input type="text" id="searchInput" placeholder="Search cities...">
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <div class="table-scroll">
+                    <table id="rankingsTable">
+                        <thead>
+                            <tr>
+                                <th data-sort="rank">Rank</th>
+                                <th data-sort="city">City</th>
+                                <th data-sort="total">Total Cost</th>
+                                <th data-sort="housing">Housing %</th>
+                                <th data-sort="internet">Internet %</th>
+                                <th data-sort="electric">Elec %</th>
+                                <th data-sort="driver">Driver</th>
+                                <th data-sort="penalty">Penalty</th>
+                                <th data-sort="type">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- WFH Penalty Section -->
+    <section class="penalty" id="penalty">
+        <div class="container">
+            <h2>The WFH Penalty</h2>
+            <p class="penalty__subtitle">How much more does it cost to work from home in each city compared to Tulsa, Oklahoma—the cheapest market in America?</p>
+            
+            <div class="penalty__chart-container">
+                <div class="penalty__bars" id="penaltyBars">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="penalty__quote">
+                <p>"Working from home in San Francisco costs $2,276 more per year than in Tulsa—that's an extra $190/month just for the privilege of a Bay Area ZIP code."</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cost Breakdown -->
+    <section class="breakdown" id="breakdown">
+        <div class="container">
+            <div class="breakdown__intro">
+                <h2>What Drives Your City's Cost?</h2>
+                <p>Compare how costs break down across different city types—from housing-dominated coastal markets to internet-heavy Midwest cities.</p>
+            </div>
+            
+            <div class="breakdown__charts">
+                <div class="breakdown-card">
+                    <h4 class="breakdown-card__city">New York City</h4>
+                    <span class="breakdown-card__type">Housing-Dominated</span>
+                    <div class="breakdown-card__chart">
+                        <canvas id="chartNYC"></canvas>
+                    </div>
+                    <div class="breakdown-card__legend">
+                        <div class="legend-item">
+                            <span class="legend-item__label"><span class="legend-item__dot legend-item__dot--housing"></span> Housing</span>
+                            <span class="legend-item__value">84%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-item__label"><span class="legend-item__dot legend-item__dot--internet"></span> Internet</span>
+                            <span class="legend-item__value">15%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-item__label"><span class="legend-item__dot legend-item__dot--electricity"></span> Electricity</span>
+                            <span class="legend-item__value">1%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="breakdown-card">
+                    <h4 class="breakdown-card__city">Colorado Springs</h4>
+                    <span class="breakdown-card__type">Internet-Heavy</span>
+                    <div class="breakdown-card__chart">
+                        <canvas id="chartCS"></canvas>
+                    </div>
+                    <div class="breakdown-card__legend">
+                        <div class="legend-item">
+                            <span class="legend-item__label"><span class="legend-item__dot legend-item__dot--housing"></span> Housing</span>
+                            <span class="legend-item__value">48%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-item__label"><span class="legend-item__dot legend-item__dot--internet"></span> Internet</span>
+                            <span class="legend-item__value">51%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-item__label"><span class="legend-item__dot legend-item__dot--electricity"></span> Electricity</span>
+                            <span class="legend-item__value">1%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="breakdown-card">
+                    <h4 class="breakdown-card__city">Tulsa</h4>
+                    <span class="breakdown-card__type">Internet-Heavy (Low-Cost)</span>
+                    <div class="breakdown-card__chart">
+                        <canvas id="chartTulsa"></canvas>
+                    </div>
+                    <div class="breakdown-card__legend">
+                        <div class="legend-item">
+                            <span class="legend-item__label"><span class="legend-item__dot legend-item__dot--housing"></span> Housing</span>
+                            <span class="legend-item__value">48%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-item__label"><span class="legend-item__dot legend-item__dot--internet"></span> Internet</span>
+                            <span class="legend-item__value">50%</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-item__label"><span class="legend-item__dot legend-item__dot--electricity"></span> Electricity</span>
+                            <span class="legend-item__value">2%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Surprise Cities -->
+    <section class="surprise" id="surprise">
+        <div class="container">
+            <h2 class="mb-3">Surprise Cities</h2>
+            <div class="surprise__grid">
+                <div class="surprise-card">
+                    <div class="surprise-card__header">
+                        <h4 class="surprise-card__city">Colorado Springs</h4>
+                        <span class="surprise-card__angle surprise-card__angle--expensive">More Expensive</span>
+                    </div>
+                    <p>Despite affordable rent ($1,152/year for space), the nation's highest broadband cost ($1,229/year) pushes total WFH costs <strong>49% above nearby Denver</strong>. Internet alone accounts for 51% of the total cost.</p>
+                </div>
+                
+                <div class="surprise-card">
+                    <div class="surprise-card__header">
+                        <h4 class="surprise-card__city">Fresno</h4>
+                        <span class="surprise-card__angle surprise-card__angle--warning">Double Hit</span>
+                    </div>
+                    <p>California's highest electricity rate (40¢/kWh) adds $84/year—<strong>triple the national average</strong>—on top of already elevated housing costs. The 4% electricity share is the highest of any city.</p>
+                </div>
+                
+                <div class="surprise-card">
+                    <div class="surprise-card__header">
+                        <h4 class="surprise-card__city">Austin</h4>
+                        <span class="surprise-card__angle surprise-card__angle--cheap">Cheaper Than Expected</span>
+                    </div>
+                    <p>Despite its tech-hub reputation, Austin's total WFH cost ($2,034) is <strong>39% cheaper than San Francisco</strong> and 61% cheaper than NYC—making it one of the best values for remote workers.</p>
+                </div>
+                
+                <div class="surprise-card">
+                    <div class="surprise-card__header">
+                        <h4 class="surprise-card__city">Baltimore</h4>
+                        <span class="surprise-card__angle surprise-card__angle--warning">Internet Surprise</span>
+                    </div>
+                    <p>The second-highest broadband cost in America ($991/year) makes internet <strong>42% of total WFH expense</strong>—well above the 37% national average.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Regional Breakdown -->
+    <section class="regional" id="regional">
+        <div class="container">
+            <h2>Regional Breakdown</h2>
+            <p class="regional__subtitle">Average WFH costs by region, with top cities from each area.</p>
+            
+            <div class="regional__grid">
+                <div class="regional-card">
+                    <div class="regional-card__header">
+                        <span class="regional-card__name">West Coast</span>
+                        <span class="regional-card__avg">$3,053</span>
+                    </div>
+                    <div class="regional-card__cities">
+                        <div class="regional-city">
+                            <span>San Francisco</span>
+                            <span class="regional-city__cost">$3,897</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>San Diego</span>
+                            <span class="regional-city__cost">$3,288</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Los Angeles</span>
+                            <span class="regional-city__cost">$3,050</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Seattle</span>
+                            <span class="regional-city__cost">$2,934</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="regional-card">
+                    <div class="regional-card__header">
+                        <span class="regional-card__name">Northeast</span>
+                        <span class="regional-card__avg">$3,129</span>
+                    </div>
+                    <div class="regional-card__cities">
+                        <div class="regional-city">
+                            <span>New York City</span>
+                            <span class="regional-city__cost">$5,180</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Boston</span>
+                            <span class="regional-city__cost">$3,889</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Philadelphia</span>
+                            <span class="regional-city__cost">$2,527</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Washington, DC</span>
+                            <span class="regional-city__cost">$2,919</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="regional-card">
+                    <div class="regional-card__header">
+                        <span class="regional-card__name">Texas</span>
+                        <span class="regional-card__avg">$1,934</span>
+                    </div>
+                    <div class="regional-card__cities">
+                        <div class="regional-city">
+                            <span>Dallas</span>
+                            <span class="regional-city__cost">$2,049</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Austin</span>
+                            <span class="regional-city__cost">$2,034</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Houston</span>
+                            <span class="regional-city__cost">$1,878</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>San Antonio</span>
+                            <span class="regional-city__cost">$1,919</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="regional-card">
+                    <div class="regional-card__header">
+                        <span class="regional-card__name">Midwest</span>
+                        <span class="regional-card__avg">$1,894</span>
+                    </div>
+                    <div class="regional-card__cities">
+                        <div class="regional-city">
+                            <span>Chicago</span>
+                            <span class="regional-city__cost">$2,834</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Minneapolis</span>
+                            <span class="regional-city__cost">$2,171</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Detroit</span>
+                            <span class="regional-city__cost">$1,892</span>
+                        </div>
+                        <div class="regional-city">
+                            <span>Kansas City</span>
+                            <span class="regional-city__cost">$1,750</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Methodology -->
+    <section class="methodology" id="methodology">
+        <div class="container">
+            <div class="methodology__content">
+                <div class="methodology__sidebar">
+                    <h2>Methodology</h2>
+                    <p>How we calculated the true cost of remote work across 50 U.S. cities.</p>
+                </div>
+                <div class="methodology__details">
+                    <div class="method-item">
+                        <h4>🏠 Office Space Cost (50 sq ft)</h4>
+                        <p>Calculated as: <code>(Average 1BR rent ÷ Average apartment size) × 50 sq ft × 12 months</code>. This represents the implicit housing cost of dedicating home space to work.</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>📡 Broadband Internet</h4>
+                        <p>Monthly cost of 60+ Mbps unlimited broadband service × 12 months. Source: Numbeo cost-of-living database (2025).</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>⚡ Electricity (Equipment Only)</h4>
+                        <p>Equipment load: laptop + monitor + router + LED lamp = 91W × 160 hours/month = 17.6 kWh/month (adjusted for efficiency). Multiplied by local residential rate × 12. <strong>HVAC excluded</strong> as not directly attributable to remote work.</p>
+                    </div>
+                    <div class="method-item">
+                        <h4>📊 Data Sources</h4>
+                        <p>Residential rent: ApartmentAdvisor, RentCafe, Rent.com (Dec 2025). Apartment sizes: Yardi Matrix (Feb 2025). Broadband: Numbeo (2025). Electricity: EIA + utility providers (2025). City selection: Top 50 U.S. cities by population (Census Bureau, July 2024).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Expert Quote -->
+    <section class="expert" id="expert">
+        <div class="container">
+            <div class="expert__quote">
+                <p class="expert__text">"Remote work may free you from the office, but it doesn't free you from local costs. Our analysis shows that where you live plays a much bigger role in the affordability of working from home than most people realize—and housing is by far the biggest driver."</p>
+                <div class="expert__author">
+                    <div class="expert__avatar">👤</div>
+                    <span class="expert__name">[Spokesperson Name]</span>
+                    <span class="expert__title">[Title, Company]</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <div class="download__content">
+                <div class="download__text">
+                    <h3>For Media</h3>
+                    <p>Download the full dataset and press materials for your coverage.</p>
+                </div>
+                <div class="download__buttons">
+                    <button class="btn" onclick="downloadCSV()">Download Dataset (CSV)</button>
+                    <button class="btn btn--outline">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__credit">
+                    If you use this data, please credit and link to: <a href="#">[Your URL]</a><br>
+                    <small>Published December 2025</small>
+                </div>
+                <div class="footer__share">
+                    <button class="share-btn" title="Share on Twitter" onclick="shareTwitter()">𝕏</button>
+                    <button class="share-btn" title="Share on LinkedIn" onclick="shareLinkedIn()">in</button>
+                    <button class="share-btn" title="Copy Link" onclick="copyLink()">🔗</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // City Data
+        const cityData = [
+            { rank: 1, city: "New York City, NY", total: 5180, housing: 84, internet: 15, electric: 1, driver: "Housing", penalty: 3559, type: "Housing-Dominated" },
+            { rank: 2, city: "San Francisco, CA", total: 3897, housing: 77, internet: 22, electric: 2, driver: "Housing", penalty: 2276, type: "Housing-Dominated" },
+            { rank: 3, city: "Boston, MA", total: 3889, housing: 74, internet: 24, electric: 2, driver: "Housing", penalty: 2268, type: "Housing-Dominated" },
+            { rank: 4, city: "San Diego, CA", total: 3288, housing: 68, internet: 30, electric: 3, driver: "Housing", penalty: 1667, type: "Housing-Dominated" },
+            { rank: 5, city: "San Jose, CA", total: 3215, housing: 71, internet: 27, electric: 2, driver: "Housing", penalty: 1594, type: "Housing-Dominated" },
+            { rank: 6, city: "Los Angeles, CA", total: 3050, housing: 69, internet: 29, electric: 2, driver: "Housing", penalty: 1429, type: "Housing-Dominated" },
+            { rank: 7, city: "Long Beach, CA", total: 3000, housing: 68, internet: 29, electric: 2, driver: "Housing", penalty: 1379, type: "Housing-Dominated" },
+            { rank: 8, city: "Oakland, CA", total: 2991, housing: 69, internet: 28, electric: 2, driver: "Housing", penalty: 1370, type: "Housing-Dominated" },
+            { rank: 9, city: "Seattle, WA", total: 2934, housing: 67, internet: 31, electric: 1, driver: "Housing", penalty: 1313, type: "Housing-Dominated" },
+            { rank: 10, city: "Washington, DC", total: 2919, housing: 69, internet: 30, electric: 1, driver: "Housing", penalty: 1298, type: "Housing-Dominated" },
+            { rank: 11, city: "Chicago, IL", total: 2834, housing: 71, internet: 28, electric: 1, driver: "Housing", penalty: 1213, type: "Housing-Dominated" },
+            { rank: 12, city: "Miami, FL", total: 2772, housing: 71, internet: 28, electric: 1, driver: "Housing", penalty: 1151, type: "Housing-Dominated" },
+            { rank: 13, city: "Philadelphia, PA", total: 2527, housing: 62, internet: 36, electric: 2, driver: "Housing", penalty: 906, type: "Balanced" },
+            { rank: 14, city: "Sacramento, CA", total: 2418, housing: 62, internet: 37, electric: 1, driver: "Housing", penalty: 797, type: "Balanced" },
+            { rank: 15, city: "Colorado Springs, CO", total: 2411, housing: 48, internet: 51, electric: 1, driver: "Internet", penalty: 790, type: "Internet-Heavy" },
+            { rank: 16, city: "Baltimore, MD", total: 2378, housing: 57, internet: 42, electric: 2, driver: "Housing", penalty: 757, type: "Balanced" },
+            { rank: 17, city: "Tampa, FL", total: 2361, housing: 62, internet: 36, electric: 2, driver: "Housing", penalty: 740, type: "Balanced" },
+            { rank: 18, city: "Nashville, TN", total: 2331, housing: 60, internet: 38, electric: 1, driver: "Housing", penalty: 710, type: "Balanced" },
+            { rank: 19, city: "Portland, OR", total: 2303, housing: 64, internet: 34, electric: 1, driver: "Housing", penalty: 682, type: "Balanced" },
+            { rank: 20, city: "Denver, CO", total: 2276, housing: 62, internet: 36, electric: 2, driver: "Housing", penalty: 655, type: "Balanced" },
+            { rank: 21, city: "Atlanta, GA", total: 2212, housing: 56, internet: 42, electric: 2, driver: "Housing", penalty: 591, type: "Balanced" },
+            { rank: 22, city: "Phoenix, AZ", total: 2189, housing: 53, internet: 45, electric: 1, driver: "Housing", penalty: 568, type: "Internet-Heavy" },
+            { rank: 23, city: "Fresno, CA", total: 2178, housing: 55, internet: 41, electric: 4, driver: "Housing", penalty: 557, type: "Balanced" },
+            { rank: 24, city: "Minneapolis, MN", total: 2171, housing: 61, internet: 37, electric: 2, driver: "Housing", penalty: 550, type: "Balanced" },
+            { rank: 25, city: "Virginia Beach, VA", total: 2148, housing: 58, internet: 41, electric: 2, driver: "Housing", penalty: 527, type: "Balanced" },
+            { rank: 26, city: "Mesa, AZ", total: 2132, housing: 54, internet: 44, electric: 1, driver: "Housing", penalty: 511, type: "Balanced" },
+            { rank: 27, city: "Charlotte, NC", total: 2110, housing: 56, internet: 42, electric: 1, driver: "Housing", penalty: 489, type: "Balanced" },
+            { rank: 28, city: "Milwaukee, WI", total: 2087, housing: 59, internet: 40, electric: 2, driver: "Housing", penalty: 466, type: "Balanced" },
+            { rank: 29, city: "Dallas, TX", total: 2049, housing: 57, internet: 41, electric: 1, driver: "Housing", penalty: 428, type: "Balanced" },
+            { rank: 30, city: "Austin, TX", total: 2034, housing: 59, internet: 40, electric: 1, driver: "Housing", penalty: 413, type: "Balanced" },
+            { rank: 31, city: "Albuquerque, NM", total: 1980, housing: 56, internet: 43, electric: 2, driver: "Housing", penalty: 359, type: "Balanced" },
+            { rank: 32, city: "New Orleans, LA", total: 1974, housing: 54, internet: 44, electric: 2, driver: "Housing", penalty: 353, type: "Balanced" },
+            { rank: 33, city: "Las Vegas, NV", total: 1969, housing: 55, internet: 44, electric: 2, driver: "Housing", penalty: 348, type: "Balanced" },
+            { rank: 34, city: "Tucson, AZ", total: 1960, housing: 52, internet: 46, electric: 2, driver: "Housing", penalty: 339, type: "Internet-Heavy" },
+            { rank: 35, city: "Raleigh, NC", total: 1959, housing: 57, internet: 41, electric: 2, driver: "Housing", penalty: 338, type: "Balanced" },
+            { rank: 36, city: "Fort Worth, TX", total: 1938, housing: 54, internet: 44, electric: 2, driver: "Housing", penalty: 317, type: "Balanced" },
+            { rank: 37, city: "San Antonio, TX", total: 1919, housing: 49, internet: 50, electric: 1, driver: "Internet", penalty: 298, type: "Internet-Heavy" },
+            { rank: 38, city: "Detroit, MI", total: 1892, housing: 55, internet: 42, electric: 2, driver: "Housing", penalty: 271, type: "Low-Cost" },
+            { rank: 39, city: "Columbus, OH", total: 1881, housing: 56, internet: 43, electric: 2, driver: "Housing", penalty: 260, type: "Low-Cost" },
+            { rank: 40, city: "Arlington, TX", total: 1878, housing: 53, internet: 45, electric: 2, driver: "Housing", penalty: 257, type: "Internet-Heavy" },
+            { rank: 41, city: "Houston, TX", total: 1878, housing: 52, internet: 46, electric: 2, driver: "Housing", penalty: 257, type: "Internet-Heavy" },
+            { rank: 42, city: "Indianapolis, IN", total: 1860, housing: 52, internet: 46, electric: 2, driver: "Housing", penalty: 239, type: "Internet-Heavy" },
+            { rank: 43, city: "Jacksonville, FL", total: 1832, housing: 57, internet: 41, electric: 2, driver: "Housing", penalty: 211, type: "Low-Cost" },
+            { rank: 44, city: "El Paso, TX", total: 1809, housing: 51, internet: 48, electric: 2, driver: "Housing", penalty: 188, type: "Internet-Heavy" },
+            { rank: 45, city: "Memphis, TN", total: 1807, housing: 49, internet: 49, electric: 1, driver: "Internet", penalty: 186, type: "Internet-Heavy" },
+            { rank: 46, city: "Louisville, KY", total: 1783, housing: 53, internet: 46, electric: 1, driver: "Housing", penalty: 162, type: "Internet-Heavy" },
+            { rank: 47, city: "Omaha, NE", total: 1754, housing: 53, internet: 46, electric: 1, driver: "Housing", penalty: 133, type: "Internet-Heavy" },
+            { rank: 48, city: "Kansas City, MO", total: 1750, housing: 56, internet: 42, electric: 2, driver: "Housing", penalty: 129, type: "Low-Cost" },
+            { rank: 49, city: "Oklahoma City, OK", total: 1639, housing: 49, internet: 50, electric: 2, driver: "Internet", penalty: 18, type: "Internet-Heavy" },
+            { rank: 50, city: "Tulsa, OK", total: 1621, housing: 48, internet: 50, electric: 2, driver: "Internet", penalty: 0, type: "Internet-Heavy" }
+        ];
+        
+        // Populate Table
+        function populateTable(data) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" class="no-results">No cities found matching your search.</td></tr>';
+                return;
+            }
+            
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                
+                // Determine cost class
+                let costClass = 'cost-cell--mid';
+                if (row.total >= 3000) costClass = 'cost-cell--expensive';
+                else if (row.total <= 2000) costClass = 'cost-cell--affordable';
+                
+                // Determine penalty class
+                let penaltyClass = row.penalty > 1000 ? 'penalty-cell--high' : 'penalty-cell--low';
+                
+                // Determine driver class
+                let driverClass = row.driver === 'Housing' ? 'driver-badge--housing' : 'driver-badge--internet';
+                
+                tr.innerHTML = `
+                    <td class="rank-cell">${row.rank}</td>
+                    <td class="city-cell">${row.city}</td>
+                    <td class="cost-cell ${costClass}">$${row.total.toLocaleString()}</td>
+                    <td class="percent-cell">${row.housing}%</td>
+                    <td class="percent-cell">${row.internet}%</td>
+                    <td class="percent-cell">${row.electric}%</td>
+                    <td><span class="driver-badge ${driverClass}">${row.driver}</span></td>
+                    <td class="penalty-cell ${penaltyClass}">+$${row.penalty.toLocaleString()}</td>
+                    <td><span class="type-badge">${row.type}</span></td>
+                `;
+                
+                tbody.appendChild(tr);
+            });
+        }
+        
+        // Initial populate
+        populateTable(cityData);
+        
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const filtered = cityData.filter(row => 
+                row.city.toLowerCase().includes(query)
+            );
+            populateTable(filtered);
+        });
+        
+        // Sort functionality
+        let currentSort = { column: null, direction: 'asc' };
+        
+        document.querySelectorAll('th[data-sort]').forEach(th => {
+            th.addEventListener('click', function() {
+                const column = this.dataset.sort;
+                
+                // Remove sorted classes from all headers
+                document.querySelectorAll('th').forEach(h => {
+                    h.classList.remove('sorted-asc', 'sorted-desc');
+                });
+                
+                // Determine direction
+                if (currentSort.column === column) {
+                    currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+                } else {
+                    currentSort.column = column;
+                    currentSort.direction = 'asc';
+                }
+                
+                // Add sorted class
+                this.classList.add(`sorted-${currentSort.direction}`);
+                
+                // Sort data
+                const sorted = [...cityData].sort((a, b) => {
+                    let valA = a[column];
+                    let valB = b[column];
+                    
+                    if (typeof valA === 'string') {
+                        valA = valA.toLowerCase();
+                        valB = valB.toLowerCase();
+                    }
+                    
+                    if (currentSort.direction === 'asc') {
+                        return valA > valB ? 1 : -1;
+                    } else {
+                        return valA < valB ? 1 : -1;
+                    }
+                });
+                
+                populateTable(sorted);
+            });
+        });
+        
+        // Penalty Bars
+        function populatePenaltyBars() {
+            const container = document.getElementById('penaltyBars');
+            const topCities = cityData.slice(0, 10);
+            const maxPenalty = topCities[0].penalty;
+            
+            topCities.forEach((city, index) => {
+                const bar = document.createElement('div');
+                bar.className = 'penalty-bar';
+                const width = (city.penalty / maxPenalty) * 100;
+                
+                bar.innerHTML = `
+                    <span class="penalty-bar__city">${city.city.replace(', ', '<br>')}</span>
+                    <div class="penalty-bar__track">
+                        <div class="penalty-bar__fill" style="width: 0%">
+                            <span class="penalty-bar__value">+$${city.penalty.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(bar);
+                
+                // Animate after append
+                setTimeout(() => {
+                    bar.querySelector('.penalty-bar__fill').style.width = `${width}%`;
+                }, 100 + (index * 100));
+            });
+        }
+        
+        populatePenaltyBars();
+        
+        // Pie Charts
+        const chartConfig = {
+            type: 'doughnut',
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        enabled: false
+                    }
+                }
+            }
+        };
+        
+        const colors = ['#3B82F6', '#8B5CF6', '#F59E0B'];
+        
+        new Chart(document.getElementById('chartNYC'), {
+            ...chartConfig,
+            data: {
+                labels: ['Housing', 'Internet', 'Electricity'],
+                datasets: [{
+                    data: [84, 15, 1],
+                    backgroundColor: colors,
+                    borderWidth: 0
+                }]
+            }
+        });
+        
+        new Chart(document.getElementById('chartCS'), {
+            ...chartConfig,
+            data: {
+                labels: ['Housing', 'Internet', 'Electricity'],
+                datasets: [{
+                    data: [48, 51, 1],
+                    backgroundColor: colors,
+                    borderWidth: 0
+                }]
+            }
+        });
+        
+        new Chart(document.getElementById('chartTulsa'), {
+            ...chartConfig,
+            data: {
+                labels: ['Housing', 'Internet', 'Electricity'],
+                datasets: [{
+                    data: [48, 50, 2],
+                    backgroundColor: colors,
+                    borderWidth: 0
+                }]
+            }
+        });
+        
+        // Download CSV
+        function downloadCSV() {
+            const headers = ['Rank', 'City', 'Total Cost', 'Housing %', 'Internet %', 'Electricity %', 'Primary Driver', 'WFH Penalty', 'Type'];
+            const rows = cityData.map(row => [
+                row.rank,
+                row.city,
+                row.total,
+                row.housing,
+                row.internet,
+                row.electric,
+                row.driver,
+                row.penalty,
+                row.type
+            ]);
+            
+            let csv = headers.join(',') + '\n';
+            rows.forEach(row => {
+                csv += row.map(val => `"${val}"`).join(',') + '\n';
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'wfh-cost-rankings-2025.csv';
+            a.click();
+        }
+        
+        // Social Sharing
+        function shareTwitter() {
+            const text = encodeURIComponent('Working from home in NYC costs $3,559 more per year than in Tulsa. See where your city ranks:');
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+        }
+        
+        function shareLinkedIn() {
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank');
+        }
+        
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('Link copied to clipboard!');
+        }
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Nav scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.boxShadow = 'var(--shadow-md)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
